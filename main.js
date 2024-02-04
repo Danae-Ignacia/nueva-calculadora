@@ -45,7 +45,7 @@ const busqueda = (nombrePlan) => {
 let nombrePlan = prompt("¿Qué Plan busca?");
 busqueda(nombrePlan);
 
-
+//calculadora nuevo precio
 if (nombrePlan != "") {
     const suma = (x, y) => x + y;
     const oferta = (x, y) => x - y;
