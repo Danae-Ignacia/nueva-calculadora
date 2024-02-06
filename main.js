@@ -11,18 +11,26 @@ class Usuario {
   }
 }
 //Registro Objeto
-let nombre =  prompt("Ingresa tu nombre").toLowerCase();
+let nombre =  prompt("Ingresa tu nombre").toUpperCase();
 let email = prompt("Ingrese su email");
 
 const usuarioRegistrado = new Usuario({nombre, email});
 usuarioRegistrado.saludo();
 
-//arreglo planes
-const planes = [
-  { sku: 1221, nombrePlan: "basico", precio: 1000 },
-  { sku: 2331, nombrePlan: "estandar", precio: 1750 },
-  { sku: 1332, nombrePlan: "full", precio: 2320 },
-];
+//arreglo planes, uso push para agregar items
+class Plan {
+  constructor(sku, nombrePlan, precio){
+      this.sku = sku;
+      this.nombrePlan = nombrePlan;
+      this.precio = precio;
+  }
+}
+
+const planes = [];
+planes.push(new Plan(1234, "básico", 1200 ));
+planes.push(new Plan(12345, "estándar", 1400 ));
+planes.push(new Plan(123456, "full", 1600 ));
+
 
 //Busqueda
 const busqueda = (nombrePlan) => {
@@ -45,6 +53,7 @@ const busqueda = (nombrePlan) => {
 let nombrePlan = prompt("¿Qué Plan busca?");
 busqueda(nombrePlan);
 
+
 //calculadora nuevo precio
 if (nombrePlan != "") {
     const suma = (x, y) => x + y;
@@ -58,3 +67,14 @@ if (nombrePlan != "") {
     alert (`Excelente tu plan queda en ${nuevoPrecio}, mensual`);
 }
 
+//validación cupón uso de length e includes
+const descuentos = ["cupon1", "cupon2", "cupon2","cupon3","cupon4"];
+let cuponDescuento = prompt("Ingresa tu cupón");
+
+for (let i = 0; i < descuentos.length; i++){
+if (descuentos.includes(cuponDescuento)){
+    alert("Cupón vigente")
+} else{
+    alert("Cupón expirado")
+}
+}
