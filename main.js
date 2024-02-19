@@ -1,80 +1,159 @@
+// Variables
+const shopContent = document.getElementById("shopContent");
+const verCarrito = document.getElementById("verCarrito");
+const modalContainer = document.getElementById("modalContainer");
+const cantidadCarrito = document.getElementById("cantidadCarrito");
 
-//Bienvenida 
-alert(`Hola, gracias por utilizar nuestra calculadora!`);
-class Usuario {
-  constructor(info) {
-    this.nombre = info.nombre;
-    this.email = info.email;
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+// Arreglo Productos
+const productos = [
+  {
+    id: 1,
+    nombre: "plan basico",
+    precio: 20032,
+    img: "https://ablog.managemart.com/images/o_1dnpgku1cdiogh18pabq8cb8.jpg",
+    cantidad: 1,
+  },
+  {
+    id: 2,
+    nombre: "plan medio",
+    precio: 20034,
+    img: "https://www.agenciaeplus.com.br/wp-content/uploads/2022/12/canais-de-venda-loja-virtual.jpg",
+    cantidad: 1,
+  },
+  {
+    id: 3,
+    nombre: "plan full",
+    precio: 20036,
+    img: "https://ablog.managemart.com/images/o_1dnpgku1cdiogh18pabq8cb8.jpg",
+    cantidad: 1,
+  },
+];
+
+
+/* -- Divs de productos para agregar al HTML -- */
+productos.forEach((product) => {
+  let content = document.createElement("div");
+  content.className = "box";
+  content.innerHTML = `
+  <img src="${product.img}" class="content-img">
+  <h2>${product.nombre}</h2>
+  <p class="content-price">$ ${product.precio}</p>
+  `;
+  shopContent.append(content);
+
+  let agregar = document.createElement("button");
+  agregar.innerText = "agregar";
+  agregar.className = "btn-agregar"
+
+  content.append(agregar);
+
+  agregar.addEventListener("click", () => {
+  
+    //validar si el producto ya se agrego para no repetir el item si no que sumar cantidades
+    const repeat = carrito.some((repeatProduct) => repeatProduct.id === product.id);
+    if(repeat){
+      carrito.map((item) => {
+        if (item.id === product.id){
+          item.cantidad++;
+        }
+      });
+    } else {
+      //agregar al carrito
+    carrito.push({
+      id: product.id,
+      img: product.img,
+      nombre: product.nombre,
+      precio: product.precio,
+      cantidad: product.cantidad,
+    });
   }
-  saludo() {
-    alert (`Bienvenido(a) ${this.nombre}, manos a la obra!`);
-  }
-}
-//Registro Objeto
-let nombre =  prompt("Ingresa tu nombre").toUpperCase();
-let email = prompt("Ingrese su email");
+  carritoCounter();
+  guardarCarrito ();
+  });
+});
+//localStorage set item para guardar productos
+const guardarCarrito = () => {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  };
+  
+  //localStorage get item para recuperar productos
+  JSON.parse(localStorage.getItem("carrito"));
 
-const usuarioRegistrado = new Usuario({nombre, email});
-usuarioRegistrado.saludo();
+// Crear modal
+  const gestionarCarrito = () => {
+  modalContainer.innerHTML="";
+   modalContainer.style.display="flex";
+  const modalHeader = document.createElement("div");
+  modalHeader.className = "modal-header"
+  modalHeader.innerHTML = `
+  <h3 class="modal-header_title">Total</h3>
+ `;
+  modalContainer.append(modalHeader);
 
-//arreglo planes, uso push para agregar items
-class Plan {
-  constructor(sku, nombrePlan, precio){
-      this.sku = sku;
-      this.nombrePlan = nombrePlan;
-      this.precio = precio;
-  }
-}
+  const modalButton = document.createElement("p");
+  modalButton.innerText = "x";
+  modalButton.className = "modal-header-button";
+  modalButton.addEventListener("click", () => {
+    modalContainer.style.display ="none";
+  });
 
-const planes = [];
-planes.push(new Plan(1234, "básico", 1200 ));
-planes.push(new Plan(12345, "estándar", 1400 ));
-planes.push(new Plan(123456, "full", 1600 ));
+  modalHeader.append (modalButton);
 
+  //Mostrar productos en el modal
+  carrito.forEach((product) => {
+    let carritoContent = document.createElement("div")
+    carritoContent.className = "modal-content"
+    carritoContent.innerHTML = `
+    <h3>${product.nombre}</h3>
+    <p> ${product.precio}</p>
+    <p>Cantidad: ${product.cantidad}</p>
+    <p> Total: $ ${product.cantidad * product.precio}</p>
+    `;
+    modalContainer.append(carritoContent);
 
-//Busqueda
-const busqueda = (nombrePlan) => {
-  let planEncontrado;
-  for (const plan of planes) {
-    if (plan.nombrePlan === nombrePlan) {
-      planEncontrado = plan;
-    }
-  }
+// Boton borrar producto Carrito
+    let borrar = document.createElement("span");
+    borrar.innerText= "x";
+    borrar.className = "borrar-product";
+    carritoContent.append(borrar);
 
-  if (planEncontrado) {
-    alert(`
-      sku: ${planEncontrado.sku}
-      nombrePlan: ${planEncontrado.nombrePlan}
-      Precio: ${planEncontrado.precio}
-    `);
-  }
+    borrar.addEventListener("click", borrarProduct);
+});
+
+// Sumar total de Carrito
+ const total = carrito.reduce ((acum, item) => acum + item.precio * item.cantidad, 0);
+ const totalCoti = document.createElement("div")
+ totalCoti.className = "total-cotizacion"
+ totalCoti.innerHTML = `La suma es: $ ${total}`;
+ modalContainer.append(totalCoti);
 };
 
-let nombrePlan = prompt("¿Qué Plan busca?");
-busqueda(nombrePlan);
 
+verCarrito.addEventListener("click", gestionarCarrito);
 
-//calculadora nuevo precio
-if (nombrePlan != "") {
-    const suma = (x, y) => x + y;
-    const oferta = (x, y) => x - y;
-    const iva = (x) => x * 0.19;
-    
-    let precioProducto = Number(prompt("Ingrese el precio del plan"));
-    let descuento = Number(prompt("Ingrese el descuento asignado (máximo 500)"));
-    
-    let nuevoPrecio = oferta(suma(precioProducto, iva(precioProducto)), descuento);
-    alert (`Excelente tu plan queda en ${nuevoPrecio}, mensual`);
-}
+// Busqueda y filtro para borrar producto
+  const borrarProduct = () => {
+  const encontrarId = carrito.find((item) => item.id);
 
-//validación cupón uso de length e includes
-const descuentos = ["cupon1", "cupon2", "cupon2","cupon3","cupon4"];
-let cuponDescuento = prompt("Ingresa tu cupón");
+  carrito = carrito.filter((carritoId) => {
+    return carritoId !== encontrarId;
+  });
+  carritoCounter();
+  guardarCarrito();
+  gestionarCarrito();
+};
 
-for (let i = 0; i < descuentos.length; i++){
-if (descuentos.includes(cuponDescuento)){
-    alert("Cupón vigente")
-} else{
-    alert("Cupón expirado")
-}
-}
+const carritoCounter = () => {
+  cantidadCarrito.style.display = "block";
+
+  const carritoLength = carrito.length;
+
+  localStorage.setItem("carritoLength", JSON.stringify(carritoLength));
+  cantidadCarrito.innerText = JSON.parse(localStorage.getItem("carritoLength"));
+};
+
+carritoCounter();
+

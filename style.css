@@ -1,0 +1,87 @@
+.div-content{
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+box {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+}
+
+.content-img{
+    width: 90%;
+    height: 250px;
+}
+
+.content-price{
+ color: rgb(154, 152, 152);
+ font-weight: 600;
+ font-size: 12pt;
+}
+
+.modal-container {
+width: 80%;
+margin: 0 10%;
+max-height: 88vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+position: fixed;
+overflow: auto;
+z-index: 9;
+top: 12vh;
+scrollbar-color: none;
+ background: #b9b9b9;
+  color: #fff;
+  border-radius: 20px;
+}
+
+modal-container::-webkit-scrollbar{
+    display: none;
+}
+
+.modal-header{
+    display: flex;
+    justify-content:space-around;
+    width: 100%;
+}
+
+.modal-hrader-title {
+    justify-self: start;
+}
+
+.modal-container > .modal-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    margin: 10px;
+}
+
+.totalCoti{
+    font-size: 14pt;
+    padding:20px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.borrar-product{
+    cursor: pointer;
+}
+
+.cantidad-carrito {
+    background-color: #000;
+    color:#fff;
+    border-radius: 50%;
+    font-size: 10pt;
+    padding: 4px;
+    top:37px;
+    right: 14px;
+    position:absolute;
+    display: none;
+}
