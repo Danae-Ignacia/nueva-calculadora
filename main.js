@@ -27,13 +27,13 @@ const productos = [
     id: 3,
     nombre: "plan full",
     precio: 20036,
-    img: "https://ablog.managemart.com/images/o_1dnpgku1cdiogh18pabq8cb8.jpg",
+    img: "https://www.bycomercial.com/wp-content/uploads/2019/07/post-508.jpg",
     cantidad: 1,
   },
 ];
 
 
-/* -- Divs de productos para agregar al HTML -- */
+// Div de producto para agregar al HTML 
 productos.forEach((product) => {
   let content = document.createElement("div");
   content.className = "box";
@@ -85,12 +85,12 @@ const guardarCarrito = () => {
 // Crear modal
   const gestionarCarrito = () => {
   modalContainer.innerHTML="";
-   modalContainer.style.display="flex";
+  modalContainer.style.display="flex";
   const modalHeader = document.createElement("div");
   modalHeader.className = "modal-header"
   modalHeader.innerHTML = `
   <h3 class="modal-header_title">Total</h3>
- `;
+`;
   modalContainer.append(modalHeader);
 
   const modalButton = document.createElement("p");
@@ -125,10 +125,10 @@ const guardarCarrito = () => {
 
 // Sumar total de Carrito
  const total = carrito.reduce ((acum, item) => acum + item.precio * item.cantidad, 0);
- const totalCoti = document.createElement("div")
- totalCoti.className = "total-cotizacion"
- totalCoti.innerHTML = `La suma es: $ ${total}`;
- modalContainer.append(totalCoti);
+  const totalCoti = document.createElement("div")
+  totalCoti.className = "total-cotizacion"
+  totalCoti.innerHTML = `La suma es: $ ${total}`;
+  modalContainer.append(totalCoti);
 };
 
 
@@ -147,7 +147,7 @@ verCarrito.addEventListener("click", gestionarCarrito);
 };
 
 const carritoCounter = () => {
-  cantidadCarrito.style.display = "block";
+  cantidadCarrito.style.display = "flex";
 
   const carritoLength = carrito.length;
 
