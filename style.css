@@ -8,6 +8,21 @@ body {
   ol {
     list-style-type: none;
   }
+  .logo {
+    font-weight: 700;
+    margin-top: 2rem;
+    color: #004467;
+}
+  .nav-container {
+    position: sticky;
+    z-index: 3;
+    top: 0;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    height: 12vh;
+  }
 .div-content{
     display:flex;
     justify-content: space-around;
@@ -26,28 +41,53 @@ box {
     width: 90%;
     height: 250px;
 }
-
+.btn-agregar {
+    background: #737cfd;
+    color: #fff;
+    border-color: #a0a5e6;
+    border-radius: 5%;
+    display: block;
+    width: 40%;
+    height: auto;
+    font-weight: 600;
+}
+.btn-agregar:hover {
+    background: #a0a5e6;
+    border-color: #737cfd;
+}
 .content-price{
  color: rgb(154, 152, 152);
  font-weight: 600;
  font-size: 12pt;
 }
-
+.content-name {
+    margin-top: 1.2rem;
+    font-weight: 600;
+}
 .modal-container {
-width: 80%;
-margin: 0 10%;
-max-height: 88vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-position: fixed;
-overflow: auto;
-z-index: 9;
-top: 12vh;
-scrollbar-color: none;
- background: #b9b9b9;
-  color: #fff;
-  border-radius: 20px;
+    width: 80%;
+    margin: 0 10%;
+    max-height: 88vh;
+    left: 7%;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    overflow: auto;
+    z-index: 9;
+    top: 13vh;
+    scrollbar-color: none;
+    background: #737cfd;
+    color: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+}
+.modal-header-button {
+    position: absolute;
+    right: 10%;
+    background: red;
+    padding: 0.3rem;
+    border-radius: 10px;
 }
 
 modal-container::-webkit-scrollbar{
@@ -87,13 +127,12 @@ modal-container::-webkit-scrollbar{
 .cantidad-carrito {
     height: 30px;
     width: 30px;
-    background-color: #000;
-    color:#fff;
+    background-color: #004467;
+    color: #fff;
     border-radius: 50%;
     font-weight: 600;
-    font-size: 12.5pt;
+    font-size: 13.5pt;
     padding-left: 10px;
-    right: 14px;
-    position:absolute;
-    display: none;
+    position: absolute;
+    margin-left: 20px;
 }
