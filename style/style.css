@@ -28,9 +28,9 @@ ol {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin-top: 30px;
-    margin-left: 80px;
-    margin-right: 80px;
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 box {
@@ -104,11 +104,16 @@ box {
 
 .modal-header-button {
     position: absolute;
-    right: 10%;
-    background: red;
-    padding: 0.3rem;
+    right: 5%;
+    background: #fcc7f1;
+    color: gray;
+    padding: 0.1rem;
     border-radius: 10px;
     cursor: pointer;
+    font-weight: 600;
+    height: 30px;
+    width: 30px;
+    text-align: center;
 }
 
 .modal-container > .modal-content {
@@ -158,6 +163,18 @@ box {
     cursor: pointer;
 }
 
+.btn-comprar {
+  background: #fcc7f1;
+  padding: 0.4rem;
+  border-radius: 7px;
+  font-weight: 500;
+  margin-top: 1rem;
+  cursor: pointer;
+  color: gray;
+  width: auto;
+  height: auto;
+  font-size: 1.1rem;
+}
 
 @media only screen and (max-width: 750px) {
     .modal-container {
