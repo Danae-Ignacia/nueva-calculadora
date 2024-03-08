@@ -123,6 +123,8 @@ const gestionarCarrito = () => {
     eliminar.addEventListener("click", ()=> {
       borrarProduct(product.id);
     } );
+
+
   });
 
   // Sumar total de Carrito
@@ -131,7 +133,19 @@ const gestionarCarrito = () => {
   totalCoti.className = "total-cotizacion"
   totalCoti.innerHTML = `La suma es: $ ${total}`;
   modalContainer.append(totalCoti);
+  const comprarButton = document.createElement("p");
+comprarButton.innerHTML = `
+<button>comprar</button>`;
+modalContainer.append(comprarButton);
+
+comprarButton.className = "comprarButton";
+comprarButton.addEventListener("click", () => {
+  localStorage.clear(); 
+  location.reload(); 
+  
+});
 };
+
 
 
 verCarrito.addEventListener("click", gestionarCarrito);
@@ -159,4 +173,3 @@ const carritoCounter = () => {
 };
 
 carritoCounter();
-
