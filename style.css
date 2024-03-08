@@ -136,3 +136,9 @@ modal-container::-webkit-scrollbar{
     position: absolute;
     margin-left: 20px;
 }
+.sumar {
+    cursor: pointer;
+}
+.restar {
+    cursor: pointer;
+}
